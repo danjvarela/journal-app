@@ -12,7 +12,17 @@
   </head>
 
   <body>
-    <main class="container mx-auto h-screen pt-28 prose max-h-screen">
+    <header class="w-full mb-10">
+      <div class="container mx-auto py-5 flex justify-between items-center">
+        <span class="font-bold"><%= current_user.email %></span>
+
+        <div class="flex gap-2">
+          <%= link_to "Home", root_path, class: "btn btn-sm btn-ghost" %>
+          <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-sm btn-ghost" %>
+        </div>
+      </div>
+    </header>
+    <main class="container mx-auto h-screen prose">
       <% if alert %>
         <div class="alert alert-error">
           <span><%= alert %></span>
@@ -22,11 +32,6 @@
         <div class="alert alert-info">
           <span><%= notice %></span>
         </div>
-      <% end %>
-      <% if user_signed_in? %>
-        <p><%= current_user.email %></p>
-        <%= button_to "log_out", destroy_user_session_path, method: :delete %>
-        <%= link_to "Home", root_path, class: "btn btn-sm btn-ghost mb-5 max-w-sm gap-2 justify-start" if params[:action] != "home"  %>
       <% end %>
       <%= yield %>
     </main>
