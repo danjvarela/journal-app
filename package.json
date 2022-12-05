@@ -6,6 +6,7 @@
     "@babel/plugin-transform-runtime": "7",
     "@babel/preset-env": "7",
     "@babel/runtime": "7",
+    "@fortawesome/fontawesome-free": "^6.2.1",
     "babel-loader": "8",
     "compression-webpack-plugin": "9",
     "daisyui": "^2.42.1",

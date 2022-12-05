@@ -21,9 +21,11 @@ class Task < ApplicationRecord
     (Time.now.beginning_of_day..Time.now.end_of_day).cover? deadline
   end
 
-  def formatted_deadline
-    return "No deadline" if deadline.blank?
-    return "Today" if deadline_today?
+  def formatted_deadline(format = nil)
+    return deadline.strftime format if format
+
+    return "no_deadline" if deadline.blank?
+    return "today" if deadline_today?
     deadline.strftime DATE_FORMAT
   end
 

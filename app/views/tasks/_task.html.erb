@@ -1,13 +1,17 @@
 <% category ||= @category %>
-<div class="card card-bordered border-2">
-  <div class="card-body p-5">
-    <%= link_to category_task_path(category, task), class: "link link-hover" do %>
-      <h3 class="card-title mt-0"><%= task.name %></h3>
-      <p><%= task.description %></p>
-    <% end %>
-    <div class="card-actions">
-      <%= link_to category_path(category), class: "link link-hover" do %>
-        <div class="badge badge-outline"><%= category.name %></div> 
+<div class="card card-bordered">
+  <div class="card-body flex flex-row justify-between items-center py-2 px-5">
+    <div class="flex gap-1 items-center">
+      <input type="checkbox" checked="checked" class="checkbox checkbox-success checkbox-md mr-2" />
+      <%= link_to task.name.humanize, category_task_path(category, task), class: "link link-hover font-bold" %>
+      <span>due <%= task.formatted_deadline == "today" ? task.formatted_deadline("%l:%M %p") : task.formatted_deadline %></span>
+    </div>
+    <div class="flex">
+      <%= link_to edit_category_task_path(category, task), class: "btn btn-circle btn-ghost btn-sm" do %>
+        <i class="fa-regular fa-pen-to-square"></i>
+      <% end %>
+      <%= button_to category_task_path(category, task), method: :delete, class: "btn btn-circle btn-ghost btn-sm" do %>
+        <i class="fa-regular fa-trash-can"></i>
       <% end %>
     </div>
   </div>
