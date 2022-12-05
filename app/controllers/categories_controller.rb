@@ -2,6 +2,8 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :get_category, only: [:show, :edit, :update, :destroy]
 
+  include CategoriesHelper
+
   def index
     @categories = Category.all.order(created_at: :desc)
   end

@@ -1,33 +1,33 @@
-<%= form_for [category, task] do |form| %>
-  <% if task.errors.any? %>
-    <div class="flex flex-col gap-2 mb-2">
-      <% task.errors.full_messages.each do |message| %>
-        <div class="alert alert-error">
-          <span><%= message %></span>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-
+<%= form_for [category, task] do |f| %>
   <div class="card card-bordered border-2">
     <div class="card-body">
-      <div>
-        <%= form.label :name %>
-        <%= form.text_field :name, class: "input input-sm input-bordered w-full" %>
+      <div class="field form-control">
+        <%= f.label :name, class: "label" do %>
+          <span class="label-text">Name</span>
+        <% end %>
+        <%= f.text_field :name, autofocus: true, class: "input input-bordered w-full #{"input-error" if has_attr_error(task, :name)}" %>
+        <%= render "error_message", task: task, attribute: :name %>
       </div>
-      <div>
-        <%= form.label :description %>
-        <%= form.text_field :description, class: "input input-sm input-bordered w-full" %>
+
+      <div class="field form-control">
+        <%= f.label :description, class: "label" do %>
+          <span class="label-text">Description</span>
+        <% end %>
+        <%= f.text_field :description, autofocus: true, class: "input input-bordered w-full #{"input-error" if has_attr_error(task, :description)}" %>
+        <%= render "error_message", task: task, attribute: :description %>
       </div>
-      <div>
-        <%= form.label :deadline %>
-        <%= form.date_field :deadline, class: "input input-sm input-bordered w-full" %>
+
+      <div class="field form-control">
+        <%= f.label :deadline, class: "label" do %>
+          <span class="label-text">Deadline</span>
+        <% end %>
+        <%= f.datetime_field :deadline, autofocus: true, class: "input input-bordered w-full #{"input-error" if has_attr_error(task, :deadline)}" %>
+        <%= render "error_message", task: task, attribute: :deadline %>
       </div>
       
       <div class="card-actions mt-5">
-        <%= form.submit class: "btn btn-primary btn-sm" %>
-        <%= link_to "View", category_task_path(category), class: "btn btn-sm btn-info" if task.id %>
-        <%= link_to "All tasks", category_tasks_path(category), class: "btn btn-sm btn-ghost" %>
+        <%= f.submit class: "btn btn-primary" %>
+        <%= link_to "Back to tasks in #{category.name.humanize} category", category_tasks_path(category), class: "btn btn-ghost" %>
       </div>
     </div>
   </div>

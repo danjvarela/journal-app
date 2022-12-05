@@ -12,24 +12,25 @@
   </head>
 
   <body>
-    <header class="w-full mb-10">
-      <div class="container mx-auto py-5 flex justify-between items-center">
+    <header class="w-full mb-8">
+      <div class="container mx-auto py-5 flex justify-between items-center px-5 max-w-2xl">
         <span class="font-bold"><%= current_user.email %></span>
 
         <div class="flex gap-2">
           <%= link_to "Home", root_path, class: "btn btn-sm btn-ghost" %>
+          <%= link_to "Categories", categories_path, class: "btn btn-sm btn-ghost" %>
           <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-sm btn-ghost" %>
         </div>
       </div>
     </header>
-    <main class="container mx-auto h-screen prose">
+    <main class="container mx-auto h-screen prose px-5">
       <% if alert %>
-        <div class="alert alert-error">
+        <div class="alert alert-error mb-2">
           <span><%= alert %></span>
         </div>
       <% end %>
       <% if notice %>
-        <div class="alert alert-info">
+        <div class="alert alert-info mb-2">
           <span><%= notice %></span>
         </div>
       <% end %>

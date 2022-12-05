@@ -1,25 +1,17 @@
-<%= form_for category do |form| %>
-  <% if category.errors.any? %>
-    <div class="flex flex-col gap-2 mb-2">
-      <% category.errors.full_messages.each do |message| %>
-        <div class="alert alert-error">
-          <span><%= message %></span>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-
+<%= form_for category do |f| %>
   <div class="card card-bordered border-2">
     <div class="card-body">
-      <div>
-        <%= form.label :name %>
-        <%= form.text_field :name, class: "input input-sm input-bordered w-full" %>
+      <div class="field form-control">
+        <%= f.label :name, class: "label" do %>
+          <span class="label-text">Name</span>
+        <% end %>
+        <%= f.text_field :name, autofocus: true, class: "input input-bordered w-full #{"input-error" if has_attr_error(category, :name)}" %>
+        <%= render "error_message", category: category, attribute: :name %>
       </div>
       
       <div class="card-actions mt-5">
-        <%= form.submit class: "btn btn-primary btn-sm" %>
-        <%= link_to "view", category_path(category), class: "btn btn-sm btn-info" if category.id %>
-        <%= link_to "back to categories", categories_path, class: "btn btn-sm btn-ghost" %>
+        <%= f.submit class: "btn btn-primary" %>
+        <%= link_to "back to categories", categories_path, class: "btn btn-ghost" %>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h1>Sign up</h1>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "w-full max-w-xs", novalidate: true }) do |f| %>
   <%= render "users/shared/flashes" %>
   <div class="flex flex-col gap-2 w-full">
@@ -6,29 +6,29 @@
       <%= f.label :email, class: "label" do %>
         <span class="label-text">Email</span>
       <% end %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered w-full #{"input-error" if has_attr_error :email}" %>
-      <%= render "error_message", attribute: :email %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered w-full #{"input-error" if has_attr_error(resource, :email)}" %>
+      <%= render "error_message", attribute: :email, resource: resource %>
     </div>
     
     <div class="field form-control">
       <%= f.label :password, class: "label" do %>
         <span class="label-text">Password</span>
       <% end %>
-      <%= f.password_field :password, autocomplete: "new-password", class: "input input-bordered w-full #{"input-error" if has_attr_error :password}" %>
-      <% if @minimum_password_length && !has_attr_error(:password) %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "input input-bordered w-full #{"input-error" if has_attr_error(resource, :password)}" %>
+      <% if @minimum_password_length && !has_attr_error(resource, :password) %>
         <label class="label">
           <span class="label-text-alt"><%= @minimum_password_length %> characters minimum</span>
         </label>
       <% end %>
-      <%= render "error_message", attribute: :password %>
+      <%= render "error_message", attribute: :password, resource: resource %>
     </div>
     
     <div class="field form-control">
       <%= f.label :password_confirmation, class: "label" do %>
         <span class="label-text">Password Confirmation</span> 
       <% end %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered w-full #{"input-error" if has_attr_error :password_confirmation}" %>
-      <%= render "error_message", attribute: :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered w-full #{"input-error" if has_attr_error(resource, :password_confirmation)}" %>
+      <%= render "error_message", attribute: :password_confirmation, resource: resource %>
     </div>
     
     <div class="actions">

@@ -10,7 +10,7 @@
     <div class="card-actions justify-end">
       <%= link_to "Edit", edit_category_task_path(@category, @task), class: "btn btn-primary btn-sm" %>
       <%= button_to "Delete", category_task_path(@category, @task), method: :delete, class: "btn btn-error btn-sm" %>
-      <%= link_to "All tasks in this category", category_tasks_path, class: "btn btn-ghost btn-sm" %>
+      <%= link_to "All tasks in #{@category.name.humanize} category", category_tasks_path(@category), class: "btn btn-ghost btn-sm" %>
     </div>
   </div>
 </div>

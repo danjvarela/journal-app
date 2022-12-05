@@ -1,0 +1,5 @@
+<% if has_attr_error(category, attribute) %>
+  <label class="label">
+    <span class="label-text-alt text-error"><%= get_attr_error(category, attribute) %></span>
+  </label>
+<% end %>
