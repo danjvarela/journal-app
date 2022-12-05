@@ -6,7 +6,7 @@
       <%= link_to task.name.humanize, category_task_path(category, task), class: "link link-hover font-bold" %>
       <span><%= task.formatted_deadline %></span>
     </div>
-    <div class="flex">
+    <div class="flex items-center gap-2">
       <%= link_to edit_category_task_path(category, task), class: "btn btn-circle btn-ghost btn-sm" do %>
         <i class="fa-regular fa-pen-to-square"></i>
       <% end %>

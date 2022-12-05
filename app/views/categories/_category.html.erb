@@ -3,13 +3,14 @@
     <div class="flex gap-1 items-center">
       <%= link_to category.name.humanize, category_path(category), class: "link link-hover font-bold" %>
     </div>
-    <div class="flex">
+    <div class="flex items-center gap-2">
       <%= link_to edit_category_path(category), class: "btn btn-circle btn-ghost btn-sm" do %>
         <i class="fa-regular fa-pen-to-square"></i>
       <% end %>
       <%= button_to category_path(category), method: :delete, class: "btn btn-circle btn-ghost btn-sm" do %>
         <i class="fa-regular fa-trash-can"></i>
       <% end %>
+      <%= link_to "new task", new_category_task_path(category), class: "btn btn-xs btn-info" %>
     </div>
   </div>
 </div>
