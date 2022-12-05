@@ -2,6 +2,8 @@
 
 one:
   name: "Category 1"
+  user: one
 
 two:
   name: "Category 2"
+  user: one
