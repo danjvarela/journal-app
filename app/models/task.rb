@@ -1,32 +1,37 @@
 class Task < ApplicationRecord
   DATE_FORMAT = "%B %e, %Y"
+  TIME_FORMAT = "%l:%M %p"
   belongs_to :category
   validates :name, presence: true, length: {minimum: 5}
   validate :deadline_not_in_the_past
 
-  # returns an array of all the tasks grouped into days
-  def self.group_per_deadline
-    all.order(deadline: :asc).each_with_object({}) do |task, days|
-      day = task.formatted_deadline
-
-      if days[day]
-        days[day].push task
-      else
-        days[day] = [task]
-      end
-    end
+  def deadline_in_the_past?
+    deadline < Time.zone.now
   end
 
   def deadline_today?
-    (Time.now.beginning_of_day..Time.now.end_of_day).cover? deadline
+    (Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).cover? deadline
   end
 
-  def formatted_deadline(format = nil)
-    return deadline.strftime format if format
+  def deadline_tomorrow?
+    (Time.zone.tomorrow.beginning_of_day..Time.zone.tomorrow.end_of_day).cover? deadline
+  end
 
-    return "no_deadline" if deadline.blank?
-    return "today" if deadline_today?
-    deadline.strftime DATE_FORMAT
+  def self.for_today
+    Task.where(deadline: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).order(deadline: :asc)
+  end
+
+  def format_deadline
+    return "" if deadline.blank?
+    deadline.strftime("#{DATE_FORMAT} #{TIME_FORMAT}")
+  end
+
+  def formatted_deadline
+    return "No due date" if deadline.blank?
+    return "Overdue" if deadline_in_the_past?
+    return "Due #{deadline.strftime(TIME_FORMAT)}" if deadline_today?
+    return "Due tomorrow" if deadline_tomorrow?
+    "Due on #{deadline.strftime(DATE_FORMAT).capitalize}"
   end
 
   private
@@ -34,7 +39,7 @@ class Task < ApplicationRecord
   def deadline_not_in_the_past
     return if deadline.blank?
 
-    if deadline < Time.now
+    if deadline_in_the_past?
       errors.add(:deadline, "cannot be a date in the past")
     end
   end

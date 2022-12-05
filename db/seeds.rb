@@ -7,5 +7,5 @@
 #   Character.create(name: "Luke", movie: movies.first)
 ["General", "Studies", "Work_Stuff", "Important"].each do |category_name|
   category = Category.create name: category_name
-  10.times { |n| category.tasks.create name: "Task #{n + 1}", description: "Task #{n + 1} description", deadline: Time.now + [45.minutes, 1.days, 4.days].sample }
+  10.times { |n| category.tasks.create name: "Task #{n + 1}", description: "Task #{n + 1} description", deadline: Time.zone.now + [45.minutes, 1.days, 4.days].sample }
 end
