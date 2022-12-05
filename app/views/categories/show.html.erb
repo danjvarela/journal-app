@@ -2,6 +2,7 @@
   <div class="card-body prose">
     <h2 class="card-title">Name</h2>
     <p><%= @category.name.humanize %></p>
+    <small>Created <%= time_ago_in_words(@category.created_at) %> ago</small>
 
     <div class="card-actions justify-end">
       <%= link_to "Edit", edit_category_path(@category), class: "btn btn-primary btn-sm" %>
