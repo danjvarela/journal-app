@@ -6,6 +6,18 @@ class Task < ApplicationRecord
   validates :name, presence: true, length: {minimum: 5}
   validate :deadline_not_in_the_past
 
+  def self.group_by_deadline
+    all.order(deadline: :asc).each_with_object({}) do |task, group|
+      deadline_day = task.deadline_today? ? "Due today" : task.formatted_deadline
+
+      if group[deadline_day]
+        group[deadline_day].push task
+      else
+        group[deadline_day] = [task]
+      end
+    end
+  end
+
   def deadline_in_the_past?
     deadline < Time.zone.now
   end
