@@ -2,6 +2,7 @@ class Task < ApplicationRecord
   DATE_FORMAT = "%B %e, %Y"
   TIME_FORMAT = "%l:%M %p"
   belongs_to :category
+  belongs_to :user
   validates :name, presence: true, length: {minimum: 5}
   validate :deadline_not_in_the_past
 
