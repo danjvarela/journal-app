@@ -8,6 +8,7 @@
 ["user1@example", "user2@example"].each { |email| User.create email: email, password: "password" }
 
 ["General", "Studies", "Work Stuff", "Important"].each do |category_name|
-  category = User.first.categories.create name: category_name
-  3.times { |n| category.tasks.create name: "Task #{n + 1}", description: "Task #{n + 1} description", deadline: Time.zone.now + [45.minutes, 1.days, 4.days].sample }
+  user = User.first
+  category = user.categories.create name: category_name
+  3.times { |n| category.tasks.create name: "Task #{n + 1}", description: "Task #{n + 1} description", deadline: Time.zone.now + [45.minutes, 1.days, 4.days].sample, user: user }
 end
