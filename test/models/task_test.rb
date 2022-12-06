@@ -15,7 +15,7 @@ class TaskTest < ActiveSupport::TestCase
     assert_not task.save
   end
 
-  test "deadline should be a past date" do
+  test "deadline should not be a past date" do
     task = @category.tasks.build description: "sample description", name: "sample name", deadline: 7.days.ago
     assert_not task.save
   end
