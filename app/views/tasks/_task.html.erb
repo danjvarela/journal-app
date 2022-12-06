@@ -4,7 +4,9 @@
     <div class="flex gap-1 items-center">
       <input type="checkbox" <%= task.done ? "checked" : "" %> class="checkbox checkbox-success checkbox-md mr-2" data-action="input->tasks#checkboxChanged" data-tasks-target="checkbox" />
       <%= link_to task.name.humanize, category_task_path(category, task), class: "link link-hover font-bold" %>
-      <span><%= task.formatted_deadline %></span>
+      <% if action_name != "tasks" || controller_name != "pages"  %>
+        <span><%= task.formatted_deadline %></span>
+      <% end %>
     </div>
     <div class="flex items-center gap-2">
       <%= link_to "#{category.name.humanize}", category_path(category), class: "badge badge-info link link-hover" %>
