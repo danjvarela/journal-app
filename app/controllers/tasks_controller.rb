@@ -12,7 +12,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = @category.tasks.build task_params.merge {user: current_user}
+    @task = @category.tasks.build task_params.merge({user: current_user})
     if @task.save
       redirect_to category_tasks_path(@category), success: "Task created successfully"
     else
