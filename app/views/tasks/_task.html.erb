@@ -1,8 +1,8 @@
 <% category ||= @category %>
-<div class="card card-bordered">
+<div class="card card-bordered" data-controller="tasks" data-tasks-update-path-value=<%= async_update_path(category, task) %> data-tasks-category-id-value=<%= category.id %>>
   <div class="card-body flex flex-row justify-between items-center py-2 px-5">
     <div class="flex gap-1 items-center">
-      <input type="checkbox" checked="checked" class="checkbox checkbox-success checkbox-md mr-2" />
+      <input type="checkbox" <%= task.done ? "checked" : "" %> class="checkbox checkbox-success checkbox-md mr-2" data-action="input->tasks#checkboxChanged" data-tasks-target="checkbox" />
       <%= link_to task.name.humanize, category_task_path(category, task), class: "link link-hover font-bold" %>
       <span><%= task.formatted_deadline %></span>
     </div>

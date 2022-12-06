@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :get_category
-  before_action :get_task, only: [:show, :edit, :update, :destroy]
+  before_action :get_task, only: [:show, :edit, :update, :destroy, :async_update]
 
   def index
     @tasks = @category.tasks.order(deadline: :asc)
@@ -31,6 +31,11 @@ class TasksController < ApplicationController
     end
   end
 
+  def async_update
+    @task.update task_params
+    render json: @task
+  end
+
   def show
   end
 
@@ -42,7 +47,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :category_id, :deadline)
+    params.require(:task).permit(:name, :description, :category_id, :deadline, :done)
   end
 
   def get_task
