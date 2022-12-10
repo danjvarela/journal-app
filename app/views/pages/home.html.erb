@@ -1,7 +1,7 @@
 <div>
   <h1>Tasks for today</h1>
   <div class="flex flex-col gap-2">
-    <% if @tasks_for_today.empty? %> 
+    <% if @tasks_for_today.empty? %>
       <span>
         Wow! It's empty in here.
       </span>
@@ -9,13 +9,13 @@
         Visit
         <%= link_to "Categories", categories_path, class: "link link-hover" %>
         to create a new category for your tasks.
-      </span> 
+      </span>
       <span>
         You can then create a new task under the created category.
       </span>
     <% end %>
     <% @tasks_for_today.each do |task| %>
-      <%= render task, category: @categories.find {|category| category.id == task.category_id} %> 
+      <%= render task, category: @categories.find {|category| category.id == task.category_id} %>
     <% end %>
   </div>
 </div>

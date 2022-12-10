@@ -8,7 +8,6 @@
         <%= f.text_field :name, autofocus: true, class: "input input-bordered w-full #{"input-error" if has_attr_error(category, :name)}" %>
         <%= render "error_message", category: category, attribute: :name %>
       </div>
-      
       <div class="card-actions mt-5">
         <%= f.submit class: "btn btn-primary" %>
         <%= link_to "back to categories", categories_path, class: "btn btn-ghost" %>

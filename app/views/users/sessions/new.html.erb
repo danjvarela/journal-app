@@ -1,5 +1,4 @@
 <h1>Log in</h1>
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "w-full max-w-xs", novalidate: true }) do |f| %>
   <%= render "users/shared/flashes" %>
   <div class="flex flex-col gap-2 w-full">
@@ -9,14 +8,12 @@
       <% end %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered w-full" %>
     </div>
-    
     <div class="field form-control">
       <%= f.label :password, class: "label" do %>
         <span class="label-text">Password</span>
       <% end %>
       <%= f.password_field :password, autocomplete: "current-password", class: "input input-bordered w-full" %>
     </div>
-    
     <% if devise_mapping.rememberable? %>
       <div class="field form-control">
         <%= f.label :remember_me, class: "label cursor-pointer" do %>
@@ -25,16 +22,13 @@
         <% end %>
       </div>
     <% end %>
-    
     <div class="actions">
       <%= f.submit "Log in", class: "btn btn-primary btn-block mt-2" %>
     </div>
-
     <div class="flex flex-col align-start w-full">
       <span>
         Don't have an account yet?
         <%= link_to "Sign up", new_registration_path(resource_name), class: "link link-hover" %>
       </span>
-  </div>
-<% end %>
-
+    </div>
+  <% end %>

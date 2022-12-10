@@ -8,7 +8,6 @@
         <%= f.text_field :name, autofocus: true, class: "input input-bordered w-full #{"input-error" if has_attr_error(task, :name)}" %>
         <%= render "error_message", task: task, attribute: :name %>
       </div>
-
       <div class="field form-control">
         <%= f.label :description, class: "label" do %>
           <span class="label-text">Description</span>
@@ -16,7 +15,6 @@
         <%= f.text_field :description, autofocus: true, class: "input input-bordered w-full #{"input-error" if has_attr_error(task, :description)}" %>
         <%= render "error_message", task: task, attribute: :description %>
       </div>
-
       <div class="field form-control">
         <%= f.label :deadline, class: "label" do %>
           <span class="label-text">Deadline</span>
@@ -24,7 +22,6 @@
         <%= f.datetime_field :deadline, autofocus: true, class: "input input-bordered w-full #{"input-error" if has_attr_error(task, :deadline)}" %>
         <%= render "error_message", task: task, attribute: :deadline %>
       </div>
-      
       <div class="card-actions mt-5">
         <%= f.submit class: "btn btn-primary" %>
         <%= link_to "Back to tasks in #{category.name.humanize} category", category_tasks_path(category), class: "btn btn-ghost" %>

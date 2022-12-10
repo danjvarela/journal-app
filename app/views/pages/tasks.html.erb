@@ -1,11 +1,10 @@
 <div>
   <h1>All tasks</h1>
-
   <% @tasks_by_deadline.each do |deadline, tasks| %>
     <h2><%= deadline %></h2>
     <div class="flex flex-col gap-2">
       <% tasks.each do |task| %>
-        <%= render task, category: @categories.find {|category| category.id == task.category_id} %> 
+        <%= render task, category: @categories.find {|category| category.id == task.category_id} %>
       <% end %>
     </div>
   <% end %>

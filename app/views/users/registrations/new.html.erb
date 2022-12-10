@@ -9,7 +9,6 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered w-full #{"input-error" if has_attr_error(resource, :email)}" %>
       <%= render "error_message", attribute: :email, resource: resource %>
     </div>
-    
     <div class="field form-control">
       <%= f.label :password, class: "label" do %>
         <span class="label-text">Password</span>
@@ -22,19 +21,16 @@
       <% end %>
       <%= render "error_message", attribute: :password, resource: resource %>
     </div>
-    
     <div class="field form-control">
       <%= f.label :password_confirmation, class: "label" do %>
-        <span class="label-text">Password Confirmation</span> 
+        <span class="label-text">Password Confirmation</span>
       <% end %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered w-full #{"input-error" if has_attr_error(resource, :password_confirmation)}" %>
       <%= render "error_message", attribute: :password_confirmation, resource: resource %>
     </div>
-    
     <div class="actions">
       <%= f.submit "Sign up", class: "btn btn-primary btn-block mt-2" %>
     </div>
-
     <div class="flex flex-col align-start w-full">
       <span>
         Already have an account?
@@ -43,4 +39,3 @@
     </div>
   </div>
 <% end %>
-

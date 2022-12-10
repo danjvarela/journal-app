@@ -6,11 +6,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application" %>
     <%= javascript_pack_tag "application" %>
   </head>
-
   <body>
     <main class="container mx-auto h-screen prose flex flex-col justify-center items-center">
       <%= yield %>
